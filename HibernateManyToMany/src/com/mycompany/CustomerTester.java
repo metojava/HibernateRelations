@@ -10,11 +10,11 @@ public class CustomerTester {
 	public static void main(String[] args) {
 		CustomerDao customerDao = new CustomerDao();
 
-		Customer customer = new Customer("Alex", "Sparsiashvili", 7890.9);
-		CustomerType customerType = new CustomerType("Best");
+		Customer customer = new Customer("Gill", "Gates", 7890.9);
+		CustomerType customerType = new CustomerType("Gold");
 		customerDao.saveCustomerType(customerType);
 		
-		Address address = new Address("USA", "New York", "1234 Kings Highway", "11203");
+		Address address = new Address("USA", "New York", "2236 Kings Highway", "11203");
 		customer.setCustomerType(customerType);
 		customer.getAddresses().add(address);
 		try {
@@ -31,6 +31,9 @@ public class CustomerTester {
 			System.out.println(adresses);
 		
 
+		Customer customer2 = customerDao.getAllAboutCustomer(id);
+		System.out.println(customer2);
+		
 	}
 
 }

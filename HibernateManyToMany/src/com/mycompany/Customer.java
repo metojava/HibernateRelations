@@ -17,9 +17,9 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @NamedQueries({
-	
-	@NamedQuery(name="Customer.getAllData",query="select distinct c from Customer c  left  join fetch c.addresses a left join fetch c.customerType t")
-})
+
+		@NamedQuery(name = "Customer.getAllData", query = "select distinct c from Customer c  left  join fetch c.addresses a left join fetch c.customerType t"),
+		@NamedQuery(name = "Customer.getCustomerWithDetails", query = "select distinct c from Customer c  left  join fetch c.addresses a left join fetch c.customerType t where c.customer_id = :id") })
 @Entity
 @Table(name = "CUSTOMER")
 public class Customer {
@@ -40,17 +40,15 @@ public class Customer {
 	Set<Address> addresses = new HashSet<Address>();
 
 	@ManyToOne
-	@JoinColumn(name="customerType_Id")
+	@JoinColumn(name = "customerType_Id")
 	private CustomerType customerType;
-	
-	
+
 	public Customer() {
 
 	}
 
-	public Customer( String firstName, String lastName,
-			double salary) {
-		
+	public Customer(String firstName, String lastName, double salary) {
+
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.salary = salary;
@@ -104,6 +102,11 @@ public class Customer {
 		this.customerType = customerType;
 	}
 
-	
-	
+	@Override
+	public String toString() {
+		return "Customer [customer_id=" + customer_id + ", firstName="
+				+ firstName + ", lastName=" + lastName + ", salary=" + salary
+				+ "]";
+	}
+
 }
